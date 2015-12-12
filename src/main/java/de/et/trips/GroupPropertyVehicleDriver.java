@@ -3,7 +3,7 @@ package de.et.trips;
 /**
  * @author Erik
  */
-public class GroupPropertyVehicleDriver extends GroupProperty {
+class GroupPropertyVehicleDriver extends GroupProperty {
 
     private final String driver;
     private final String vehicle;
@@ -18,9 +18,9 @@ public class GroupPropertyVehicleDriver extends GroupProperty {
         if (this == o) return true;
         if (!(o instanceof GroupPropertyVehicleDriver)) return false;
 
-        GroupPropertyVehicleDriver that = (GroupPropertyVehicleDriver) o;
+        GroupPropertyVehicleDriver other = (GroupPropertyVehicleDriver) o;
 
-        return driver.equals(that.driver) && vehicle.equals(that.vehicle);
+        return driver.equals(other.driver) && vehicle.equals(other.vehicle);
     }
 
     @Override

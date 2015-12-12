@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class TripService {
 
-    private static final GroupFilterDriverVehicle DRIVER_VEHICLE_FILTER = new GroupFilterDriverVehicle();
-    private static final GroupFilterLocation LOCATION_FILTER = new GroupFilterLocation();
+    private static final GroupFilter DRIVER_VEHICLE_FILTER = new GroupFilterDriverVehicle();
+    private static final GroupFilter LOCATION_FILTER = new GroupFilterLocation();
 
     /**
      * Groups a list of trips by certain properties. E. g. by driver and vehicle.
@@ -34,13 +34,17 @@ public class TripService {
         Map<GroupProperty, List<Trip>> tripsByProperty = trips.stream()
                 .collect(groupingBy(groupFilter::readProperty));
 
-        tripsByProperty.keySet().stream()
-                .filter(p -> tripsByProperty.get(p).size() > 1)
-                .forEach(p -> {
-                    List<Trip> tripsWithSameProperty = tripsByProperty.get(p);
-                    groups.add(new TripGroup(p, tripsWithSameProperty));
+        tripsByProperty.entrySet().stream()
+                .filter(e -> moreThen1Element(e.getValue()))
+                .forEach(e -> {
+                    List<Trip> tripsWithSameProperty = e.getValue();
+                    groups.add(new TripGroup(e.getKey(), tripsWithSameProperty));
                     remainingTrips.removeAll(tripsWithSameProperty);
                 });
         return remainingTrips;
+    }
+
+    private boolean moreThen1Element(List<Trip> trips) {
+        return trips.size() > 1;
     }
 }

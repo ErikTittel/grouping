@@ -46,13 +46,13 @@ public class Trip implements Comparable<Trip> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Trip trip = (Trip) o;
+        Trip other = (Trip) o;
 
-        return id.equals(trip.id)
-                && driver.equals(trip.driver)
-                && vehicle.equals(trip.vehicle)
-                && departureLocation.equals(trip.departureLocation)
-                && departureTime.equals(trip.departureTime);
+        return id.equals(other.id)
+                && driver.equals(other.driver)
+                && vehicle.equals(other.vehicle)
+                && departureLocation.equals(other.departureLocation)
+                && departureTime.equals(other.departureTime);
 
     }
 

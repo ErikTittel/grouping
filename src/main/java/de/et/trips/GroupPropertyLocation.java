@@ -3,7 +3,7 @@ package de.et.trips;
 /**
  * @author Erik
  */
-public class GroupPropertyLocation extends GroupProperty {
+class GroupPropertyLocation extends GroupProperty {
 
     private final String location;
 
@@ -16,9 +16,9 @@ public class GroupPropertyLocation extends GroupProperty {
         if (this == o) return true;
         if (!(o instanceof GroupPropertyLocation)) return false;
 
-        GroupPropertyLocation that = (GroupPropertyLocation) o;
+        GroupPropertyLocation other = (GroupPropertyLocation) o;
 
-        return location.equals(that.location);
+        return location.equals(other.location);
     }
 
     @Override

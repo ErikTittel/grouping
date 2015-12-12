@@ -6,7 +6,7 @@ package de.et.trips;
  *
  * @author Erik
  */
-public interface GroupFilter {
+interface GroupFilter {
 
     GroupProperty readProperty(Trip trip);
 }

@@ -1,6 +1,5 @@
 package de.et.trips;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,6 +13,7 @@ public class TripGroup implements Comparable<TripGroup> {
 
     public TripGroup(GroupProperty groupProperty, List<Trip> trips) {
         this.groupProperty = groupProperty;
+        Collections.sort(trips);
         this.trips = trips;
     }
 

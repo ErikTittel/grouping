@@ -44,15 +44,4 @@ public class TripServiceTest {
         assertThat(group2.getGroupProperty().toString(), is("GroupProperty(Atlanta)"));
     }
 
-    @Test
-    public void grouping() {
-        List<Trip> trips = new ArrayList<>();
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", LocalDateTime.parse("12.12.2015 08:20", df));
-        Trip trip2 = new Trip("2", "John", "Truck01", "Atlanta", LocalDateTime.parse("13.12.2015 09:13", df));
-        trips.add(trip1);
-        trips.add(trip2);
-        GroupFilterDriverVehicle filter = new GroupFilterDriverVehicle();
-        assertThat(trips.stream().map(filter::readProperty).distinct().count(), is(1L));
-    }
 }
