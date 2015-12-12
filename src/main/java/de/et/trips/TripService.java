@@ -14,35 +14,52 @@ import java.util.Map;
  */
 public class TripService {
 
-    private GroupFilter groupFilter;
-
-    public TripService(GroupFilter groupFilter) {
-        this.groupFilter = groupFilter;
-    }
-
-    public void setGroupFilter(GroupFilter groupFilter) {
-        this.groupFilter = groupFilter;
-    }
-
     /**
      * Groups a list of trips by certain properties. E. g. by driver and vehicle.
      */
     public List<TripGroup> groupTrips(List<Trip> trips) {
         Map<GroupProperty, TripGroup> tripGroups = new HashMap<>();
-        for (Trip trip : trips) {
-            addTripToGroups(trip, tripGroups);
-        }
+        addTripsToGroups(trips, tripGroups, new GroupFilterDriverVehicle());
+        removeGroupsWithSize1(tripGroups);
+        List<Trip> remainingTrips = tripsNotGrouped(trips, tripGroups);
+        addTripsToGroups(remainingTrips, tripGroups, new GroupFilterLocation());
         return asSortedList(tripGroups.values());
     }
 
-    private void addTripToGroups(Trip trip, Map<GroupProperty, TripGroup> tripGroups) {
-        GroupProperty groupProperty = groupFilter.readProperty(trip);
-        if (tripGroups.containsKey(groupProperty)) {
-            tripGroups.get(groupProperty).addTrip(trip);
-        } else {
-            TripGroup group = new TripGroup(groupProperty, trip);
-            tripGroups.put(groupProperty, group);
+    private void addTripsToGroups(List<Trip> trips, Map<GroupProperty, TripGroup> tripGroups, GroupFilter
+            groupFilter) {
+        for (Trip trip : trips) {
+            GroupProperty groupProperty = groupFilter.readProperty(trip);
+            if (tripGroups.containsKey(groupProperty)) {
+                tripGroups.get(groupProperty).addTrip(trip);
+            } else {
+                TripGroup group = new TripGroup(groupProperty, trip);
+                tripGroups.put(groupProperty, group);
+            }
         }
+    }
+
+    private void removeGroupsWithSize1(Map<GroupProperty, TripGroup> tripGroups) {
+        List<GroupProperty> toDelete = new ArrayList<>();
+        for (GroupProperty groupProperty : tripGroups.keySet()) {
+            TripGroup group = tripGroups.get(groupProperty);
+            if (group.getTrips().size() <= 1) {
+                toDelete.add(groupProperty);
+            }
+        }
+        for (GroupProperty groupProperty : toDelete) {
+            tripGroups.remove(groupProperty);
+        }
+    }
+
+    private List<Trip> tripsNotGrouped(List<Trip> trips, Map<GroupProperty, TripGroup> tripGroups) {
+        List<Trip> groupedTrips = new ArrayList<>();
+        for (TripGroup tripGroup : tripGroups.values()) {
+            groupedTrips.addAll(tripGroup.getTrips());
+        }
+        List<Trip> remainingTrips = new ArrayList<>(trips);
+        remainingTrips.removeAll(groupedTrips);
+        return remainingTrips;
     }
 
     private List<TripGroup> asSortedList(Collection<TripGroup> values) {
