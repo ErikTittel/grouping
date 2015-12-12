@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * @author Erik
  */
-public class Trip {
+public class Trip implements Comparable<Trip> {
 
     private final String id;
     private final String driver;
@@ -74,5 +74,10 @@ public class Trip {
                 departureLocation + ", " +
                 departureTime +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Trip o) {
+        return id.compareTo(o.getId());
     }
 }
