@@ -9,21 +9,16 @@ import java.util.List;
  */
 public class TripGroup implements Comparable<TripGroup> {
 
-    private List<Trip> trips = new ArrayList<>();
+    private List<Trip> trips;
     private final GroupProperty groupProperty;
 
-    public TripGroup(GroupProperty groupProperty, Trip firstTrip) {
+    public TripGroup(GroupProperty groupProperty, List<Trip> trips) {
         this.groupProperty = groupProperty;
-        trips.add(firstTrip);
+        this.trips = trips;
     }
 
     public List<Trip> getTrips() {
         return trips;
-    }
-
-    public void addTrip(Trip trip) {
-        trips.add(trip);
-        Collections.sort(trips);
     }
 
     public GroupProperty getGroupProperty() {
