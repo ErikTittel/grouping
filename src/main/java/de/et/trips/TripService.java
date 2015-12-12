@@ -14,6 +14,16 @@ import java.util.Map;
  */
 public class TripService {
 
+    private GroupFilter groupFilter;
+
+    public TripService(GroupFilter groupFilter) {
+        this.groupFilter = groupFilter;
+    }
+
+    public void setGroupFilter(GroupFilter groupFilter) {
+        this.groupFilter = groupFilter;
+    }
+
     /**
      * Groups a list of trips by certain properties. E. g. by driver and vehicle.
      */
@@ -26,7 +36,7 @@ public class TripService {
     }
 
     private void addTripToGroups(Trip trip, Map<GroupProperty, TripGroup> tripGroups) {
-        GroupProperty groupProperty = new GroupProperty(trip.getDriver(), trip.getVehicle());
+        GroupProperty groupProperty = groupFilter.readProperty(trip);
         if (tripGroups.containsKey(groupProperty)) {
             tripGroups.get(groupProperty).addTrip(trip);
         } else {

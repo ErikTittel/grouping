@@ -1,49 +1,19 @@
 package de.et.trips;
 
 /**
+ * A common property by which a group of trips is identified. This can be a single property of a trip or a combination
+ * of several properties.
+ *
  * @author Erik
  */
-public class GroupProperty {
-
-    private final String driver;
-    private final String vehicle;
-
-    public GroupProperty(String driver, String vehicle) {
-        this.driver = driver;
-        this.vehicle = vehicle;
-    }
-
-    public String getDriver() {
-        return driver;
-    }
-
-    public String getVehicle() {
-        return vehicle;
-    }
+public abstract class GroupProperty {
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof GroupProperty)) return false;
-
-        GroupProperty that = (GroupProperty) o;
-
-        return driver.equals(that.driver) && vehicle.equals(that.vehicle);
-
-    }
+    public abstract boolean equals(Object o);
 
     @Override
-    public int hashCode() {
-        int result = driver.hashCode();
-        result = 31 * result + vehicle.hashCode();
-        return result;
-    }
+    public abstract int hashCode();
 
     @Override
-    public String toString() {
-        return "GroupProperty{" +
-                 driver + ", " +
-                vehicle + ", " +
-                '}';
-    }
+    public abstract String toString();
 }
