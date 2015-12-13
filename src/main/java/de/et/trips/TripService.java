@@ -18,7 +18,14 @@ public class TripService {
     private static final GroupFilter LOCATION_FILTER = new GroupFilterLocation();
 
     /**
-     * Groups a list of trips by certain properties. E. g. by driver and vehicle.
+     * Groups a list of trips by certain properties.
+     * <p/>
+     * Grouping happens in two steps.
+     * <ol>
+     *     <li> grouping by driver and vehicle</li>
+     *     <li> grouping by location</li>
+     * </ol>
+     * A group consists of at least 2 trips.
      */
     public List<TripGroup> groupTrips(List<Trip> trips) {
         List<TripGroup> groups = new ArrayList<>();

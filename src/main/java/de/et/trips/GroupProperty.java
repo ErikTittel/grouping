@@ -6,7 +6,7 @@ package de.et.trips;
  *
  * @author Erik
  */
-abstract class GroupProperty {
+public abstract class GroupProperty {
 
     @Override
     public abstract boolean equals(Object o);
