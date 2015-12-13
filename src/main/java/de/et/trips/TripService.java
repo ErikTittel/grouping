@@ -26,6 +26,7 @@ public class TripService {
      *     <li> grouping by location</li>
      * </ol>
      * A group consists of at least 2 trips.
+     * A trip that already belongs to a group won't be grouped in another group.
      */
     public List<TripGroup> groupTrips(List<Trip> trips) {
         List<TripGroup> groups = new ArrayList<>();
