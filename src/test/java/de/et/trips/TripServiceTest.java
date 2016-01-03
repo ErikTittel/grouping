@@ -7,8 +7,6 @@ import static org.hamcrest.Matchers.iterableWithSize;
 
 import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +20,10 @@ public class TripServiceTest {
     @Test
     public void groupTripsByDriverAndVehicle() {
         List<Trip> trips = new ArrayList<>();
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", LocalDateTime.parse("12.12.2015 08:20", df));
-        Trip trip2 = new Trip("2", "John", "Truck01", "Atlanta", LocalDateTime.parse("13.12.2015 09:13", df));
-        Trip trip3 = new Trip("3", "Lea", "Truck02", "Atlanta", LocalDateTime.parse("14.12.2015 10:18", df));
-        Trip trip4 = new Trip("4", "Tim", "Truck03", "Atlanta", LocalDateTime.parse("15.12.2015 14:12", df));
+        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", "12.12.2015 08:20");
+        Trip trip2 = new Trip("2", "John", "Truck01", "Atlanta", "13.12.2015 09:13");
+        Trip trip3 = new Trip("3", "Lea", "Truck02", "Atlanta", "14.12.2015 10:18");
+        Trip trip4 = new Trip("4", "Tim", "Truck03", "Atlanta", "15.12.2015 14:12");
         trips.add(trip1);
         trips.add(trip2);
         trips.add(trip3);

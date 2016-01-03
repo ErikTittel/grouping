@@ -7,9 +7,6 @@ import static org.hamcrest.Matchers.not;
 
 import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 /**
  * @author Erik
  */
@@ -17,9 +14,8 @@ public class GroupPropertyTest {
 
     @Test
     public void twoTripWithSameVehicleDriverProperty() throws Exception {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", LocalDateTime.parse("12.12.2015 08:20", df));
-        Trip trip2 = new Trip("2", "John", "Truck01", "Atlanta", LocalDateTime.parse("13.12.2015 09:13", df));
+        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", "12.12.2015 08:20");
+        Trip trip2 = new Trip("2", "John", "Truck01", "Atlanta", "13.12.2015 09:13");
 
         GroupPropertyVehicleDriver property1 = new GroupPropertyVehicleDriver(trip1);
         GroupPropertyVehicleDriver property2 = new GroupPropertyVehicleDriver(trip2);
@@ -29,9 +25,8 @@ public class GroupPropertyTest {
 
     @Test
     public void twoTripWithDifferentVehicleDriverProperty() throws Exception {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", LocalDateTime.parse("12.12.2015 08:20", df));
-        Trip trip2 = new Trip("2", "John", "Truck02", "Atlanta", LocalDateTime.parse("13.12.2015 09:13", df));
+        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", "12.12.2015 08:20");
+        Trip trip2 = new Trip("2", "John", "Truck02", "Atlanta", "13.12.2015 09:13");
 
         GroupPropertyVehicleDriver property1 = new GroupPropertyVehicleDriver(trip1);
         GroupPropertyVehicleDriver property2 = new GroupPropertyVehicleDriver(trip2);
@@ -41,9 +36,8 @@ public class GroupPropertyTest {
 
     @Test
     public void twoTripWithSameLocationProperty() throws Exception {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", LocalDateTime.parse("12.12.2015 08:20", df));
-        Trip trip2 = new Trip("2", "Lea", "Truck02", "Detroit", LocalDateTime.parse("13.12.2015 09:13", df));
+        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", "12.12.2015 08:20");
+        Trip trip2 = new Trip("2", "Lea", "Truck02", "Detroit", "13.12.2015 09:13");
 
         GroupPropertyLocation property1 = new GroupPropertyLocation(trip1);
         GroupPropertyLocation property2 = new GroupPropertyLocation(trip2);
@@ -53,9 +47,8 @@ public class GroupPropertyTest {
 
     @Test
     public void twoTripWithDifferentLocationProperty() throws Exception {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", LocalDateTime.parse("12.12.2015 08:20", df));
-        Trip trip2 = new Trip("2", "John", "Truck01", "Atlanta", LocalDateTime.parse("13.12.2015 09:13", df));
+        Trip trip1 = new Trip("1", "John", "Truck01", "Detroit", "12.12.2015 08:20");
+        Trip trip2 = new Trip("2", "John", "Truck01", "Atlanta", "13.12.2015 09:13");
 
         GroupPropertyLocation property1 = new GroupPropertyLocation(trip1);
         GroupPropertyLocation property2 = new GroupPropertyLocation(trip2);

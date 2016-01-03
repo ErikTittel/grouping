@@ -1,6 +1,7 @@
 package de.et.trips;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author Erik
@@ -13,12 +14,13 @@ public class Trip implements Comparable<Trip> {
     private final String departureLocation;
     private final LocalDateTime departureTime;
 
-    public Trip(String id, String driver, String vehicle, String departureLocation, LocalDateTime departureTime) {
+    public Trip(String id, String driver, String vehicle, String departureLocation, String departureTimeAsText) {
         this.id = id;
         this.driver = driver;
         this.vehicle = vehicle;
         this.departureLocation = departureLocation;
-        this.departureTime = departureTime;
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        this.departureTime = LocalDateTime.parse(departureTimeAsText, df);
     }
 
     public String getId() {
